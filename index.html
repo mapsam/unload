@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+  <title>localStorage</title>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="unload.js"></script>
+  <style>
+  textarea {
+    width:400px;
+    height:200px;
+    font-family:"Helvetica Neue", "Helvetica", sans-serif;
+    font-weight:300;
+    border:1px solid #c0c0c0;
+    margin-bottom:10px;
+    font-size:1.1em;
+  }
+  button {
+    background:steelblue;
+    padding:10px;
+    color:white;
+    border:none;
+    display:block;
+    cursor:pointer;
+  }
+  button:focus {
+    outline:none;
+  }
+  button:active {
+    background-color:#333;
+  }
+
+  textarea.unsaved > button {
+    display:none;
+  }
+  </style>
+</head>
+<body>
+
+  <p>This page is using the <code>localStorage</code> API interface to store information in the text field below.</p>
+  <p>If you enter text without pressing "save" and try to navigate away from the page, you will see a warning preventing you from doing so.</p>
+  <p>Pressing save udpates the <code>localStorage</code> object and will allow you to navigate away. When you come back, the text field will still have your information.</p>
+
+  <form id="form">
+    
+    <textarea id="mytext"></textarea>
+    <button id="save" type="button">Save</button>
+
+  </form>
+  <script>
+  window.app = {} || window.app;
+  function init() {
+    app = new unload({
+      content: 'mytext',
+      save: 'save'
+    });
+  }
+  window.onload = init;
+  </script>
+</body>
+</html>
